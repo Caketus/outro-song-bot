@@ -2,6 +2,18 @@ import discord
 from discord.ext import commands
 import asyncio
 
+# Reading the token from the 'token.txt' file
+def get_token_from_file(file_path):
+    with open(file_path, 'r') as file:
+        token = file.read().strip()  # Strip to remove any extra spaces or newlines
+    return token
+
+# Specify the path to your token file
+token_file = 'secret.txt'
+
+# Store the token in a variable
+api_token = get_token_from_file(token_file)
+
 # Define bot command prefix and intents
 intents = discord.Intents.default()
 intents.message_content = True  # Make sure the bot can read messages
@@ -12,7 +24,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 MP3_URL = "https://www.myinstants.com/media/sounds/outro-song-xenogenesis.mp3"  # Replace with the actual URL of your MP3 file
 
 # Bot token (get it from the Discord Developer Portal)
-TOKEN = SECRET_TOKEN
+TOKEN = api_token
 
 # Command to join the voice channel and play the specific song
 @bot.command()
